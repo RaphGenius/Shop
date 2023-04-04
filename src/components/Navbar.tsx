@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ModalLog from "./ModalLog";
 import { BsFillBasket3Fill } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { ProductContext, ProductContextType } from "../context/ProductContext";
 type Props = {};
 
 const Navbar = (props: Props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const user = false;
+  const user = true;
+  const { products } = useContext(ProductContext) as ProductContextType;
 
   return (
     <div className="w-full bg-red-200 h-[100px] flex flex-col justify-center  py-2 px-8">
@@ -24,11 +26,18 @@ const Navbar = (props: Props) => {
         {/* BTN LOG OU PANIER */}
         <div className="flex items-center">
           {user ? (
-            <div>
+            <div className="flex items-center justify-between w-[200px]">
               <button>Mon profil</button>
-              <button>
-                <BsFillBasket3Fill />{" "}
-              </button>
+
+              <Link to={`/panier`}>
+                {" "}
+                <button className="relative border-2 border-green-800 p-4 rounded-full">
+                  <BsFillBasket3Fill />{" "}
+                  <div className="absolute w-8 h-8 flex items-center justify-center -right-2 bg-red-700 -bottom-2 border-red-800 border rounded-full text-white ">
+                    {products.length}
+                  </div>
+                </button>
+              </Link>
             </div>
           ) : (
             <div>

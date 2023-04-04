@@ -3,23 +3,12 @@ import { useParams } from "react-router-dom";
 
 import ProductCard from "../components/ProductCard";
 import Loader from "../components/Loader";
-
-export type DataFromAPI = {
-  category: string;
-  description: string;
-  id: number;
-  image: string;
-  rating: {
-    count: number;
-    rate: number;
-  };
-  title: string;
-};
+import { ProductType } from "../types/DataType";
 
 const Products = () => {
   console.log(useParams());
   let { category } = useParams();
-  const [productsFromAPI, setProductsFromApi] = useState<DataFromAPI[] | null>(
+  const [productsFromAPI, setProductsFromApi] = useState<ProductType[] | null>(
     []
   );
   const [isLoading, setIsLoading] = useState(true);
@@ -53,7 +42,7 @@ const Products = () => {
 
       <div className="mt-4 flex items-center justify-evenly flex-wrap gap-4">
         {productsFromAPI &&
-          productsFromAPI.map((product: DataFromAPI) => (
+          productsFromAPI.map((product: ProductType) => (
             <ProductCard key={product.id} {...product} />
           ))}
       </div>
