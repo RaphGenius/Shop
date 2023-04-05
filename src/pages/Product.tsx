@@ -10,7 +10,7 @@ const Product = (props: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [productData, setProductData] = useState<ProductType>();
 
-  const { addProduct, removeProduct } = useContext(
+  const { addProduct, decreaseProduct } = useContext(
     ProductContext
   ) as ProductContextType;
 
@@ -21,7 +21,6 @@ const Product = (props: Props) => {
     if (res.ok) {
       setProductData(data);
       setIsLoading(false);
-      console.log("productdata: ", productData);
     } else {
       console.log("erreur");
     }
@@ -57,7 +56,7 @@ const Product = (props: Props) => {
 
       <button
         className="mt-4 border border-red-800 bg-red-400"
-        onClick={() => removeProduct(productData.id)}
+        onClick={() => decreaseProduct(productData.id)}
       >
         Retirer AU PANIER
       </button>

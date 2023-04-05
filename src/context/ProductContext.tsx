@@ -1,11 +1,12 @@
 import { ReactNode, createContext, useState } from "react";
-import { ProductType, StoreProduct } from "../types/DataType";
+import { StoreProduct } from "../types/DataType";
 
 export type ProductContextType = {
   products: StoreProduct[];
   addProduct: (value: number) => void;
   removeProduct: (value: number) => void;
   decreaseProduct: (value: number) => void;
+  getQuantityProduct: () => number;
 };
 
 export const ProductContext = createContext<ProductContextType | null>(null);
@@ -16,6 +17,10 @@ type ProductProviderType = {
 
 const ProductProvider = ({ children }: ProductProviderType) => {
   const [products, setProducts] = useState<StoreProduct[]>([]);
+
+  const getQuantityProduct = () => {
+    return products.reduce((quantity, item) => item.quantity + quantity, 0);
+  };
 
   function addProduct(id: number): void {
     setProducts((prevState) => {
@@ -54,7 +59,13 @@ const ProductProvider = ({ children }: ProductProviderType) => {
   }
   return (
     <ProductContext.Provider
-      value={{ products, removeProduct, addProduct, decreaseProduct }}
+      value={{
+        products,
+        removeProduct,
+        addProduct,
+        decreaseProduct,
+        getQuantityProduct,
+      }}
     >
       {children}
     </ProductContext.Provider>

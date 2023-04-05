@@ -6,7 +6,6 @@ import Loader from "../components/Loader";
 import { ProductType } from "../types/DataType";
 
 const Products = () => {
-  console.log(useParams());
   let { category } = useParams();
   const [productsFromAPI, setProductsFromApi] = useState<ProductType[] | null>(
     []
