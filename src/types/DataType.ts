@@ -8,6 +8,7 @@ export type ProductType = {
     rate: number;
   };
   title: string;
+  price: number;
 };
 
 export type StoreProduct = {

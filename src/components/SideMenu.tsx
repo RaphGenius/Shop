@@ -11,7 +11,7 @@ const SideMenu = ({ setIsSideMenuOpen }: Props) => {
       <div className="p-8">
         <div className="flex w-full justify-between">
           <h1>Logo</h1>
-          <button>
+          <button onClick={() => setIsSideMenuOpen(false)}>
             <GrClose />
           </button>
         </div>

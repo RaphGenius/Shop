@@ -14,13 +14,13 @@ type Props = {
 const Navbar = ({ isBigScreen }: Props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
-  const user = false;
+  const user = true;
   const { getQuantityProduct } = useContext(
     ProductContext
   ) as ProductContextType;
 
   return (
-    <div className="w-full bg-red-200 h-[100px] flex flex-col justify-center  py-2 px-8  relative  ">
+    <div className="w-full bg-red-200 h-[100px]  flex flex-col justify-center  py-2 px-8  z-20 relative  ">
       {isSideMenuOpen && !isBigScreen && (
         <SideMenu setIsSideMenuOpen={setIsSideMenuOpen} />
       )}
