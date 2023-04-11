@@ -4,7 +4,7 @@ type Props = {};
 
 const Loader = (props: Props) => {
   return (
-    <div className="w-full h-[calc(100vh-100px)] border-2 border-red-700 flex items-center justify-center ">
+    <div className="w-full h-[calc(100vh-100px)] flex items-center justify-center ">
       <div className=" -translate-y-[50%] ">
         <ColorRing
           visible={true}

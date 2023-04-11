@@ -8,6 +8,8 @@ import { Rating } from "../utils/Rating";
 import Heart from "../components/Heart";
 import { toast } from "react-toastify";
 import ModelProduct from "../components/ModelProduct";
+import BackNagivate from "../components/BackNagivate";
+
 type Props = {};
 
 const Product = (props: Props) => {
@@ -52,7 +54,7 @@ const Product = (props: Props) => {
   if (!productData) return <Loader />;
 
   return (
-    <div className=" p-4 lg:p-8  overflow-x-hidden">
+    <div className=" p-4  lg:p-8  overflow-x--hidden">
       {isModalProductOpen && (
         <ModelProduct
           img={productData.image}
@@ -62,7 +64,7 @@ const Product = (props: Props) => {
       )}
       <div className=" flex-col flex md:flex-row gap-8 mt-4 ">
         {/* image */}
-        <div className="w-1/2 max-h-[300px]  sticky top-[150px] hover:shadow-sm hover:scale-110 cursor-pointer transition ">
+        <div className=" w-full lg:w-1/2 lg:max-h-[300px]  lg:sticky top-[150px]  hover:scale-110 cursor-pointer transition ">
           <img
             onClick={() => setIsModalProductOpen(true)}
             className="w-full h-full object-contain sticky top-[50px]  "
@@ -71,45 +73,40 @@ const Product = (props: Props) => {
           />
         </div>
         {/* TEXTE */}
-        <div className="w-1/2 flex flex-col gap-2">
+        <div className=" w-full  lg:w-1/2 flex flex-col gap-2">
           {/* TITRE */}
-          <h3 className=" underline font-bold text-2xl  ">
-            {productData.title}{" "}
+          <h3 className=" underline font-bold text-2xl font-special  ">
+            {productData.title}
           </h3>
           <span className="text-gray-500 no-underline text-lg ">
-            Category : {productData.category}{" "}
+            Category : {productData.category}
           </span>
           <span className="text-gray-700 no-underline text-lg ">
-            Note :{" "}
+            Note :
             <span className={`${Rating(productData.rating.rate)}`}>
               {productData.rating.rate}
             </span>
             /5 - Avis : {productData.rating.count}
           </span>
-
           {/* PRIX */}
           <div>
             <p>
-              {" "}
               <span className="text-gray-800 no-underline text-lg font-bold">
-                {" "}
                 Prix :
-              </span>{" "}
-              {FormatPrice(productData.price)} €{" "}
+              </span>
+              {FormatPrice(productData.price)} €
             </p>
           </div>
           {/* DESCRIPTION */}
           <p>
-            {" "}
             <span className="text-gray-900 no-underline text-lg font-bold">
-              {" "}
               Description :
-            </span>{" "}
-            {productData.description}{" "}
+            </span>
+            {productData.description}
           </p>
-          <div className="mt-4 flex items-center">
+          <div className="mt-4 flex items-center justify-center lg:justify-normal ">
             <button
-              className=" p-4 border rounded-lg shadow-md opacity-90 hover:opacity-100 hover:shadow-xl border-red-800 bg-red-400 transition "
+              className=" p-4 border rounded-lg shadow-md opacity-90 hover:opacity-100 hover:shadow-xl border-gray-400 bg-green-800 text-white transition "
               onClick={() => addBasket(productData.id)}
             >
               AJOUTER AU PANIER
@@ -118,6 +115,9 @@ const Product = (props: Props) => {
               <Heart />
             </div>
           </div>
+          <span className="flex justify-center  mt-4 text-gray-600 ">
+            <BackNagivate> Retourner à la liste de produit </BackNagivate>
+          </span>
         </div>
       </div>
     </div>

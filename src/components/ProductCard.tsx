@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import { ProductType } from "../types/DataType";
+import { FormatPrice } from "../utils/FormatPrice";
 
 const ProductCard = ({
   category,
@@ -9,21 +10,33 @@ const ProductCard = ({
   image,
   rating,
   title,
+  price,
 }: ProductType) => {
+  function little(str: string) {
+    if (str.length > 50) {
+      return str.slice(0, 50) + "...";
+    } else {
+      return str;
+    }
+  }
+
   return (
-    <div className=" sm:w-full lg:w-[200px] h-[300px] border-2 rounded-lg border-gray-800 bg-red-400 p-2 flex flex-col items-center justify-evenly whitespace-normal">
-      <div>
-        <h3 className="text-lg text-center">{title} </h3>{" "}
+    <Link to={`${id}`}>
+      <div className=" w-[300px] mx-auto lg:w-[200px] h-[300px] border rounded-lg border-teal-800 bg-white shadow-lg p-2 flex flex-col items-center justify-between  whitespace-normal hover:scale-105 duration-75 hover:shadow-xl ">
+        <div className="mb-4">
+          <h3 className="text-md text-center hover:underline  ">
+            {little(title)}{" "}
+          </h3>
+        </div>
+
+        <div className="w-[100px] h-[160px]">
+          <img className="w-full h-full object-contain" src={image} alt="" />
+        </div>
+        <div className="flex justify-center ">
+          <p>{FormatPrice(price)} € </p>
+        </div>
       </div>
-      <div className="w-[100px]">
-        <img className="w-full object-cover" src={image} alt="" />
-      </div>
-      <div>
-        <button>
-          <Link to={`${id}`}>Voir</Link>
-        </button>
-      </div>
-    </div>
+    </Link>
   );
 };
 

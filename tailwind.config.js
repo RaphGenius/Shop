@@ -8,7 +8,10 @@ module.exports = {
         primary200: "#B9D8F2",
         primary300: "#5784BA",
         tertiary: "#F4CFDF",
-        secondary: "F7F6CF",
+        secondary100: "#F7F6CF",
+      },
+      fontFamily: {
+        special: ["Merriweather", "sans-serif"],
       },
     },
   },

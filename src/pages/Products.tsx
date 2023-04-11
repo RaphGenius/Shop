@@ -7,6 +7,8 @@ import { ProductType } from "../types/DataType";
 
 const Products = () => {
   let { category } = useParams();
+
+  console.log(category);
   const [productsFromAPI, setProductsFromApi] = useState<ProductType[] | null>(
     []
   );
@@ -14,9 +16,10 @@ const Products = () => {
 
   const getData = async () => {
     setIsLoading(true);
-    const res = await fetch(
-      `https://fakestoreapi.com/products/category/${category}`
-    );
+    const res =
+      category === "All Products"
+        ? await fetch(`https://fakestoreapi.com/products/`)
+        : await fetch(`https://fakestoreapi.com/products/category/${category}`);
     const data = await res.json();
     if (res.ok) {
       setProductsFromApi(data);
@@ -35,11 +38,11 @@ const Products = () => {
   }, []);
 
   return (
-    <div className="p-8">
+    <div className=" p-4 lg:p-8">
       <h2 className="capitalize text-center text-3xl">{category} </h2>
       {isLoading && <Loader />}
 
-      <div className="mt-4 flex items-center justify-evenly flex-wrap gap-4">
+      <div className="mt-4 flex items-center justify-center  w-full flex-wrap gap-4">
         {productsFromAPI &&
           productsFromAPI.map((product: ProductType) => (
             <ProductCard key={product.id} {...product} />
