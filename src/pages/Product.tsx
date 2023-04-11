@@ -115,7 +115,7 @@ const Product = (props: Props) => {
               <Heart />
             </div>
           </div>
-          <span className="flex justify-center  mt-4 text-gray-600 ">
+          <span className=" md:hidden flex justify-center  mt-4 text-gray-600 cursor-pointer ">
             <BackNagivate> Retourner à la liste de produit </BackNagivate>
           </span>
         </div>

@@ -7,6 +7,7 @@ export type ProductContextType = {
   removeProduct: (value: number) => void;
   decreaseProduct: (value: number) => void;
   getQuantityProduct: () => number;
+  changeQuantityProduct: (id: number, value: number) => void;
 };
 
 export const ProductContext = createContext<ProductContextType | null>(null);
@@ -57,6 +58,17 @@ const ProductProvider = ({ children }: ProductProviderType) => {
       }
     });
   }
+
+  function changeQuantityProduct(id: number, value: number) {
+    setProducts((prev) => {
+      return prev.map((item) => {
+        if (item.id === id) {
+          console.log("produit quantité modifié");
+          return { ...item, quantity: value };
+        } else return item;
+      });
+    });
+  }
   return (
     <ProductContext.Provider
       value={{
@@ -65,6 +77,7 @@ const ProductProvider = ({ children }: ProductProviderType) => {
         addProduct,
         decreaseProduct,
         getQuantityProduct,
+        changeQuantityProduct,
       }}
     >
       {children}
