@@ -29,7 +29,7 @@ const ProductProvider = ({ children }: ProductProviderType) => {
         return [...prevState, { id, quantity: 1 }];
       } else {
         return prevState.map((item) => {
-          if (item.id === id) {
+          if (item.id === id && item.quantity < 5) {
             return { ...item, quantity: item?.quantity + 1 };
           } else {
             return item;

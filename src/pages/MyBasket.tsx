@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProductContext, ProductContextType } from "../context/ProductContext";
 
 import BasketItem from "../components/BasketItem";
 import TotalProduct from "../components/TotalProduct";
+import { ProductType, StoreProduct } from "../types/DataType";
 
 type Props = {};
 

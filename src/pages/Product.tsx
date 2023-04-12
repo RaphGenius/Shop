@@ -19,9 +19,7 @@ const Product = (props: Props) => {
 
   const [isModalProductOpen, setIsModalProductOpen] = useState(false);
 
-  const { addProduct, decreaseProduct } = useContext(
-    ProductContext
-  ) as ProductContextType;
+  const { addProduct } = useContext(ProductContext) as ProductContextType;
 
   const getData = async () => {
     setIsLoading(true);

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ProductType, StoreProduct } from "../types/DataType";
 import { ProductContext, ProductContextType } from "../context/ProductContext";
+import Loader from "./Loader";
 
 const BasketItem = ({ id, quantity }: StoreProduct) => {
   const [myProduct, setMyProduct] = useState<ProductType>();
@@ -17,6 +18,7 @@ const BasketItem = ({ id, quantity }: StoreProduct) => {
     getData();
   }, []);
 
+  if (!myProduct) return <Loader />;
   return (
     <div className="border border-black flex items-center ">
       {/* IMAGE */}
