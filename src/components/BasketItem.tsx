@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { ProductType, StoreProduct } from "../types/DataType";
 import { ProductContext, ProductContextType } from "../context/ProductContext";
 import Loader from "./Loader";
-
+import { BsFillTrashFill } from "react-icons/bs";
+import { FormatPrice } from "../utils/FormatPrice";
 const BasketItem = ({ id, quantity }: StoreProduct) => {
   const [myProduct, setMyProduct] = useState<ProductType>();
   const { changeQuantityProduct, removeProduct } = useContext(
@@ -20,9 +21,9 @@ const BasketItem = ({ id, quantity }: StoreProduct) => {
 
   if (!myProduct) return <Loader />;
   return (
-    <div className="border border-black flex items-center ">
+    <div className="  even:bg-gray-100 odd:bg-slate-200 first:mt-0 mt-4 flex lg:flex-nowrap flex-wrap items-center lg:text-lg text-md  ">
       {/* IMAGE */}
-      <div className=" p-4 w-1/6 h-[150px] flex  items-center justify-center bg-yellow-300 ">
+      <div className=" p-4 w-1/4   lg:w-1/6 h-[150px] flex  items-center justify-center  ">
         <img
           className=" w-full h-full object-contain"
           src={myProduct?.image}
@@ -30,20 +31,30 @@ const BasketItem = ({ id, quantity }: StoreProduct) => {
         />
       </div>
       {/* Description */}
-      <div className=" w-3/6 bg-green-300 p-2 ">
+      <div className=" w-3/4  lg:w-3/6 p-2 flex flex-col   justify-between gap-4 ">
         <div>
-          <p className="text-lg">{myProduct?.title} </p>
-          <p className="text-lg">{myProduct?.category} </p>
+          <p className="lg:text-lg font-normal lg:font-bold  font-special">
+            {myProduct?.title}{" "}
+          </p>
+          <p className="lg:text-lg text-gray-900">
+            Category : {myProduct?.category}{" "}
+          </p>
         </div>
         <div>
-          <button onClick={() => removeProduct(id)}>Bouton supprimer</button>
+          <button
+            className=" hover:opacity-100 opacity-80 flex items-center text-gray-900 lg:text-lg gap-2"
+            onClick={() => removeProduct(id)}
+          >
+            Supprimer article <BsFillTrashFill color="black" />
+          </button>
         </div>
       </div>
       {/* INPUT NMB DE PRODUIT */}
-      <div className="w-2/6 bg-red-700 flex items-center flex-wrap justify-center  ">
-        <div>
-          <label htmlFor="productQuantity">Nombre d'article : </label>
+      <div className=" w-full lg:w-2/6 flex flex-col items-center flex-wrap h-full p-4 lg:p-0 gap-2 lg:gap-0  ">
+        <div className="w-1/3  ">
+          {/* <label htmlFor="productQuantity">Nombre d'article : </label> */}
           <select
+            className="w-full  text-center font-special h-[30px] border border-black "
             name="product"
             id="productQuantity"
             defaultValue={quantity}
@@ -58,10 +69,12 @@ const BasketItem = ({ id, quantity }: StoreProduct) => {
             <option value="5">5</option>
           </select>
         </div>
-        <p>quantité {quantity}</p>
-        <p>Prix unitaire : {myProduct?.price} </p>
-        <p>
-          prix en tout : {myProduct?.price && (myProduct?.price * quantity) | 0}{" "}
+        <p className=" lg:text-lg text-center  lg:text-start ">
+          Prix unitaire : {FormatPrice(myProduct?.price)}€{" "}
+        </p>
+        <p className="lg:text-lg text-center  lg:text-start ">
+          Total article:{" "}
+          {FormatPrice(myProduct?.price && (myProduct?.price * quantity) | 0)}€{" "}
         </p>
       </div>
     </div>

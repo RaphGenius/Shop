@@ -69,6 +69,15 @@ const Navbar = ({ isBigScreen }: Props) => {
         <div className="flex  w-full justify-between ">
           <Logo />
           <div className="flex items-center gap-4">
+            <Link to={`/panier`}>
+              {" "}
+              <button className="relative border-2 border-gray-600 p-4 rounded-full">
+                <BsFillBasket3Fill />{" "}
+                <div className="absolute w-8 h-8 flex items-center justify-center -right-2 bg-green-700 -bottom-2  rounded-full text-white ">
+                  {getQuantityProduct()}
+                </div>
+              </button>
+            </Link>
             {!user && (
               <button
                 onClick={() => {

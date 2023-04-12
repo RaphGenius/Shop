@@ -17,7 +17,7 @@ function App() {
   return (
     <ProductProvider>
       <div className="bg-gray-100 min-h-screen text-xl  relative flex flex-col  ">
-        <div className="relative pb-[150px] ">
+        <div className="relative pb-[100px] ">
           <Navbar isBigScreen={isBigScreen} />
           <ToastComponent isBigScreen={isBigScreen} />
 
