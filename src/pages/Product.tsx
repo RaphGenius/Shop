@@ -30,7 +30,6 @@ const Product = (props: Props) => {
     if (res.ok) {
       setProductData(data);
       setIsLoading(false);
-      console.log(data);
     } else {
       console.log("erreur");
     }

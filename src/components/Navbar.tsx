@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import ModalLog from "./ModalLog";
-import { BsFillBasket3Fill } from "react-icons/bs";
+import { BsFillBasket3Fill, BsFillPersonFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { ProductContext, ProductContextType } from "../context/ProductContext";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -17,6 +17,7 @@ const Navbar = ({ isBigScreen }: Props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const { user } = useContext(UserContext) as UserContextType;
+
   const { getQuantityProduct } = useContext(
     ProductContext
   ) as ProductContextType;
@@ -42,13 +43,15 @@ const Navbar = ({ isBigScreen }: Props) => {
           <div className="flex items-center">
             {user ? (
               <div className="flex items-center justify-between w-[200px]">
-                <button>Mon profil</button>
+                <button className="relative border-2 border-gray-600 hover:scale-105 will-change-transform   transition p-4 rounded-full focus:ring focus:ring-green-800 ">
+                  <BsFillPersonFill />
+                </button>
 
                 <DiscButton />
 
                 <Link to={`/panier`}>
                   {" "}
-                  <button className="relative border-2 border-gray-600 p-4 rounded-full">
+                  <button className="relative border-2 border-gray-600 p-4 rounded-full focus:ring focus:ring-green-800   hover:scale-105 will-change-transform   transition">
                     <BsFillBasket3Fill />{" "}
                     <div className="absolute w-8 h-8 flex items-center justify-center -right-2 bg-green-700 -bottom-2  rounded-full text-white ">
                       {getQuantityProduct()}
@@ -59,11 +62,12 @@ const Navbar = ({ isBigScreen }: Props) => {
             ) : (
               <div>
                 <button
+                  className="relative border-2 border-gray-600 hover:scale-105 will-change-transform   transition p-4 rounded-full focus:ring focus:ring-green-800 "
                   onClick={() => {
                     setModalIsOpen(true);
                   }}
                 >
-                  Se connecter
+                  <BsFillPersonFill />
                 </button>
               </div>
             )}

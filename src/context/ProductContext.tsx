@@ -1,5 +1,22 @@
-import { ReactNode, createContext, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { StoreProduct } from "../types/DataType";
+import { UserContext, UserContextType } from "./UserContext";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  collection,
+  query,
+  onSnapshot,
+} from "firebase/firestore";
+import { db } from "../firebase/firebase.config";
 
 export type ProductContextType = {
   products: StoreProduct[];
@@ -18,25 +35,58 @@ type ProductProviderType = {
 
 const ProductProvider = ({ children }: ProductProviderType) => {
   const [products, setProducts] = useState<StoreProduct[]>([]);
+  const { user } = useContext(UserContext) as UserContextType;
+
+  async function getData() {
+    const docRef = doc(db, user.uid, "item");
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      // console.log("Document data:", docSnap.data());
+      const { products } = docSnap.data();
+      setProducts(products);
+      console.log(products);
+    } else {
+      console.log("No such document!");
+    }
+  }
+
+  useEffect(() => {
+    if (!user) return;
+    const q = query(collection(db, user.uid));
+    const unsubscribe = onSnapshot(q, (querySnapShot) => {
+      if (!querySnapShot) setProducts([]);
+      else {
+        let arrayEmpty: StoreProduct[] = [];
+        querySnapShot.forEach((doc) => {
+          let item = doc.data() as StoreProduct;
+          arrayEmpty.push(item);
+        });
+        console.log(arrayEmpty);
+        setProducts(arrayEmpty);
+      }
+    });
+    return () => unsubscribe();
+  }, [user]);
 
   const getQuantityProduct = () => {
     return products.reduce((quantity, item) => item.quantity + quantity, 0);
   };
 
-  function addProduct(id: number): void {
-    setProducts((prevState) => {
-      if (prevState.find((prod) => prod.id === id) == null) {
-        return [...prevState, { id, quantity: 1 }];
-      } else {
-        return prevState.map((item) => {
-          if (item.id === id && item.quantity < 5) {
-            return { ...item, quantity: item?.quantity + 1 };
-          } else {
-            return item;
-          }
-        });
-      }
-    });
+  async function addProduct(id: number): Promise<any> {
+    if (products.find((prod) => prod.id === id) == null) {
+      await setDoc(doc(db, user.uid, String(id)), {
+        id,
+        quantity: 1,
+      }).then(() => getData());
+    } else {
+      products.map(async (item) => {
+        if (item.id === id) {
+          await updateDoc(doc(db, user.uid, String(id)), {
+            quantity: item.quantity + 1,
+          });
+        }
+      });
+    }
   }
 
   function removeProduct(id: number): void {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -19,10 +19,9 @@ function App() {
     <UserProvider>
       <ProductProvider>
         <div className="bg-gray-100 min-h-screen text-xl  relative flex flex-col  ">
-          <div className="relative pb-[100px] ">
+          <main className="relative pb-[100px] ">
             <Navbar isBigScreen={isBigScreen} />
             <ToastComponent isBigScreen={isBigScreen} />
-
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/shop" element={<Shopping />} />
@@ -31,8 +30,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/panier" element={<MyBasket />} />
             </Routes>
-          </div>
-
+          </main>
           <Footer />
         </div>
       </ProductProvider>
