@@ -38,7 +38,7 @@ const Products = () => {
   }, []);
 
   return (
-    <div className=" p-4 lg:p-8">
+    <section className=" p-4 lg:p-8">
       <h2 className="capitalize text-center text-3xl">{category} </h2>
       {isLoading && <Loader />}
 
@@ -48,7 +48,7 @@ const Products = () => {
             <ProductCard key={product.id} {...product} />
           ))}
       </div>
-    </div>
+    </section>
   );
 };
 

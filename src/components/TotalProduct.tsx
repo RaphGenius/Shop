@@ -29,7 +29,12 @@ const TotalProduct = () => {
   if (products.length < 1) return <p>pas de prix</p>;
 
   return (
-    <article className={`${isLoading ? "blur " : ""}`}>
+    <article
+      className={` duration-300 ${
+        isLoading ? "blur " : ""
+      } h-full flex flex-col justify-evenly`}
+    >
+      <h3 className="font-bold">TOTAL</h3>
       <TotalPrice title="Sous-total :" price={removeTva(totalPrice)} />
       <TotalPrice title="Livraison : " price={0} />
       <TotalPrice

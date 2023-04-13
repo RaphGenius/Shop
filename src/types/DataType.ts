@@ -16,3 +16,7 @@ export type StoreProduct = {
   id: number;
   quantity: number;
 };
+
+export type FavoriteStorageType = {
+  id: number;
+};

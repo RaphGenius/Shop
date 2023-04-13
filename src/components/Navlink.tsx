@@ -8,6 +8,7 @@ type Props = {
 const Navlink = ({ title, link }: Props) => {
   return (
     <NavLink
+      aria-label={title}
       className={({ isActive }) =>
         isActive
           ? "text-green-800 font-bold underline   "

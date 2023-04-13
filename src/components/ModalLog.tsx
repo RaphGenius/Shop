@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Form from "./Form";
+import { UserContext, UserContextType } from "../context/UserContext";
 
 type ModelProps = {
   setModalIsOpen(value: boolean): void;
@@ -9,6 +10,14 @@ const ModalLog = ({ setModalIsOpen }: ModelProps) => {
   const [isLogin, setIsLogin] = useState<"login" | "signup" | undefined>(
     "login"
   );
+  const { user } = useContext(UserContext) as UserContextType;
+  console.log(isLogin);
+
+  useEffect(() => {
+    if (user) {
+      setModalIsOpen(false);
+    }
+  }, [user]);
 
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto">

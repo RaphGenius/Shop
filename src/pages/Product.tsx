@@ -9,16 +9,18 @@ import Heart from "../components/Heart";
 import { toast } from "react-toastify";
 import ModelProduct from "../components/ModelProduct";
 import BackNagivate from "../components/BackNagivate";
+import { UserContext, UserContextType } from "../context/UserContext";
 
 type Props = {};
 
 const Product = (props: Props) => {
   const { id } = useParams();
+
   const [isLoading, setIsLoading] = useState(true);
   const [productData, setProductData] = useState<ProductType>();
-
   const [isModalProductOpen, setIsModalProductOpen] = useState(false);
 
+  const { user } = useContext(UserContext) as UserContextType;
   const { addProduct } = useContext(ProductContext) as ProductContextType;
 
   const getData = async () => {
@@ -44,15 +46,15 @@ const Product = (props: Props) => {
 
   const addBasket = (id: number) => {
     addProduct(id);
-    toast(`Article ajouté au panier! `, {
+    toast(`Article ajouté`, {
       theme: "light",
     });
   };
 
   if (!productData) return <Loader />;
-
+  if (!id) return <p>AUcun produit trovué</p>;
   return (
-    <div className=" p-4  lg:p-8  overflow-x--hidden">
+    <article className=" p-4  lg:p-8  overflow-x--hidden">
       {isModalProductOpen && (
         <ModelProduct
           img={productData.image}
@@ -60,9 +62,9 @@ const Product = (props: Props) => {
           setIsModalProductOpen={setIsModalProductOpen}
         />
       )}
-      <div className=" flex-col flex md:flex-row gap-8 mt-4 ">
+      <div className=" flex-col items-center lg:items-stretch flex md:flex-row gap-8 mt-4 ">
         {/* image */}
-        <div className=" w-full lg:w-1/2 lg:max-h-[300px]  lg:sticky top-[150px]  hover:scale-110 cursor-pointer transition ">
+        <div className="  w-2/5 lg:w-1/2 lg:max-h-[300px]  lg:sticky top-[150px]  hover:scale-110 cursor-pointer transition ">
           <img
             onClick={() => setIsModalProductOpen(true)}
             className="w-full h-full object-contain sticky top-[50px]  "
@@ -73,9 +75,9 @@ const Product = (props: Props) => {
         {/* TEXTE */}
         <div className=" w-full  lg:w-1/2 flex flex-col gap-2">
           {/* TITRE */}
-          <h3 className=" underline font-bold text-2xl font-special  ">
+          <h2 className=" underline font-bold text-2xl font-special  ">
             {productData.title}
-          </h3>
+          </h2>
           <span className="text-gray-500 no-underline text-lg ">
             Category : {productData.category}
           </span>
@@ -104,13 +106,17 @@ const Product = (props: Props) => {
           </p>
           <div className="mt-4 flex items-center justify-center lg:justify-normal ">
             <button
-              className=" p-4 border rounded-lg shadow-md opacity-90 hover:opacity-100 hover:shadow-xl border-gray-400 bg-green-800 text-white transition "
+              disabled={!user}
+              className={` ${
+                user ? " bg-green-800" : "bg-gray-600 cursor-not-allowed "
+              } p-4 border rounded-lg shadow-md opacity-90 hover:opacity-100 hover:shadow-xl border-gray-400  text-white
+               transition `}
               onClick={() => addBasket(productData.id)}
             >
               AJOUTER AU PANIER
             </button>
             <div className="text-3xl ml-4 transition">
-              <Heart />
+              <Heart id={id} />
             </div>
           </div>
           <span className=" md:hidden flex justify-center  mt-4 text-gray-600 cursor-pointer ">
@@ -118,7 +124,7 @@ const Product = (props: Props) => {
           </span>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

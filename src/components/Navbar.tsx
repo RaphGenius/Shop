@@ -7,6 +7,8 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Navlink from "./Navlink";
 import SideMenu from "./SideMenu";
 import Logo from "./Logo";
+import { UserContext, UserContextType } from "../context/UserContext";
+import DiscButton from "./DiscButton";
 type Props = {
   isBigScreen: boolean;
 };
@@ -14,7 +16,7 @@ type Props = {
 const Navbar = ({ isBigScreen }: Props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
-  const user = true;
+  const { user } = useContext(UserContext) as UserContextType;
   const { getQuantityProduct } = useContext(
     ProductContext
   ) as ProductContextType;
@@ -41,6 +43,8 @@ const Navbar = ({ isBigScreen }: Props) => {
             {user ? (
               <div className="flex items-center justify-between w-[200px]">
                 <button>Mon profil</button>
+
+                <DiscButton />
 
                 <Link to={`/panier`}>
                   {" "}

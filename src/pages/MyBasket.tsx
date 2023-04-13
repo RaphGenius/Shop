@@ -22,7 +22,7 @@ const MyBasket = (props: Props) => {
   return (
     <section className=" p-4 lg:p-8 ">
       <div>
-        <h4 className="text-4xl mt-2 mb-8 ">
+        <h4 className=" text-2xl  lg:text-4xl mt-2 mb-2 lg:mb-8 ">
           {/* Nombre d'article */}
           Mon panier : {getQuantityProduct()}{" "}
           {/* Article avec s si la quantité est supérieur à 1 */}
@@ -37,7 +37,7 @@ const MyBasket = (props: Props) => {
           </article>
 
           {/* Mon total */}
-          <div className=" px-4 py-8 bg-green-400 w-full lg:w-1/3 sticky lg:top-0 top-[100px]  h-[150px] ">
+          <div className=" px-4 py-8 bg-green-400 w-full lg:w-1/3 sticky lg:top-0 top-[100px] mt-4 lg:mt-0  lg:h-[200px] ">
             <TotalProduct />
           </div>
         </div>

@@ -14,7 +14,7 @@ const ProductCard = ({
 }: ProductType) => {
   function little(str: string) {
     if (str.length > 50) {
-      return str.slice(0, 50) + "...";
+      return str.slice(0, 40) + "...";
     } else {
       return str;
     }
@@ -30,7 +30,11 @@ const ProductCard = ({
         </div>
 
         <div className="w-[100px] h-[160px]">
-          <img className="w-full h-full object-contain" src={image} alt="" />
+          <img
+            className="w-full h-full object-contain"
+            src={image}
+            alt={title}
+          />
         </div>
         <div className="flex justify-center ">
           <p>{FormatPrice(price)} € </p>
