@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import ModalLog from "../Log/ModalLog";
 import SideMenu from "./SideMenu";
 import { UserContext, UserContextType } from "../../context/UserContext";
-
 import NavIsBigScreen from "./NavIsBigScreen";
 import NavIsLittleScreen from "./NavIsLittleScreen";
 type Props = {

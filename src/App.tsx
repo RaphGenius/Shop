@@ -1,8 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
-
 import ProductProvider from "./context/ProductContext";
-
 import useMediaQuery from "./hooks/useMediaQuery";
 import ToastComponent from "./components/ToastComponent";
 import Footer from "./components/Footer";

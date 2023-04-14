@@ -45,7 +45,7 @@ const Products = () => {
       <div className="mt-4 flex items-center justify-center  w-full flex-wrap gap-4">
         {productsFromAPI &&
           productsFromAPI.map((product: ProductType) => (
-            <ProductCard key={product.id} {...product} />
+            <ProductCard key={product.id} {...product} link={`${product.id}`} />
           ))}
       </div>
     </section>

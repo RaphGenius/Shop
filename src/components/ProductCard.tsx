@@ -11,6 +11,7 @@ const ProductCard = ({
   rating,
   title,
   price,
+  link,
 }: ProductType) => {
   function little(str: string) {
     if (str.length > 50) {
@@ -21,8 +22,8 @@ const ProductCard = ({
   }
 
   return (
-    <Link to={`${id}`}>
-      <div className=" w-[300px] mx-auto lg:w-[200px] h-[300px] border rounded-lg border-teal-800 bg-white shadow-lg p-2 flex flex-col items-center justify-between  whitespace-normal hover:scale-105 duration-75 hover:shadow-xl ">
+    <Link to={`${link}`}>
+      <div className=" w-[300px] mx-auto lg:w-[200px] h-[300px] border rounded-lg border-green-800 bg-white shadow-lg p-2 flex flex-col items-center justify-between  whitespace-normal hover:scale-105 duration-75 hover:shadow-xl ">
         <div className="mb-4">
           <h3 className="text-md text-center hover:underline  ">
             {little(title)}{" "}

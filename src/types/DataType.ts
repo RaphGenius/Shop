@@ -10,6 +10,7 @@ export type ProductType = {
   title: string;
   price: number;
   quantity?: number;
+  link?: string;
 };
 
 export type StoreProduct = {
