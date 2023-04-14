@@ -1,7 +1,7 @@
 import React from "react";
 import Navlink from "./Navlink";
 import { GrClose } from "react-icons/gr";
-import Logo from "./Logo";
+import Logo from "../Logo";
 type Props = {
   setIsSideMenuOpen: (value: boolean) => void;
 };

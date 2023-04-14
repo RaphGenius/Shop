@@ -16,7 +16,6 @@ type Props = {};
 const Product = (props: Props) => {
   const { id } = useParams();
 
-  const [isLoading, setIsLoading] = useState(true);
   const [productData, setProductData] = useState<ProductType>();
   const [isModalProductOpen, setIsModalProductOpen] = useState(false);
 
@@ -24,23 +23,17 @@ const Product = (props: Props) => {
   const { addProduct } = useContext(ProductContext) as ProductContextType;
 
   const getData = async () => {
-    setIsLoading(true);
     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
     const data = await res.json();
     if (res.ok) {
       setProductData(data);
-      setIsLoading(false);
     } else {
       console.log("erreur");
     }
   };
 
   useEffect(() => {
-    try {
-      getData();
-    } catch (error) {
-      console.log(error);
-    }
+    getData();
   }, []);
 
   const addBasket = (id: number) => {
@@ -50,8 +43,8 @@ const Product = (props: Props) => {
     });
   };
 
-  if (!productData) return <Loader />;
-  if (!id) return <p>AUcun produit trovué</p>;
+  if (!productData || !id) return <Loader />;
+
   return (
     <article className=" p-4  lg:p-8  overflow-x--hidden">
       {isModalProductOpen && (

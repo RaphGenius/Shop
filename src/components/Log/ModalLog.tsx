@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Form from "./Form";
-import { UserContext, UserContextType } from "../context/UserContext";
+import { UserContext, UserContextType } from "../../context/UserContext";
 
 type ModelProps = {
   setModalIsOpen(value: boolean): void;

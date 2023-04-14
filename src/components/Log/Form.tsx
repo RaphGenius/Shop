@@ -4,8 +4,8 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useContext, useRef } from "react";
-import { auth } from "../firebase/firebase.config";
-import { UserContext, UserContextType } from "../context/UserContext";
+import { auth } from "../../firebase/firebase.config";
+import { UserContext, UserContextType } from "../../context/UserContext";
 type FormProps = {
   isLogin: "login" | "signup" | undefined;
 };

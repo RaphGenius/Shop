@@ -15,6 +15,7 @@ import {
   collection,
   query,
   onSnapshot,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "../firebase/firebase.config";
 
@@ -56,13 +57,12 @@ const ProductProvider = ({ children }: ProductProviderType) => {
     const unsubscribe = onSnapshot(q, (querySnapShot) => {
       if (!querySnapShot) setProducts([]);
       else {
-        let arrayEmpty: StoreProduct[] = [];
+        let productToStock: StoreProduct[] = [];
         querySnapShot.forEach((doc) => {
           let item = doc.data() as StoreProduct;
-          arrayEmpty.push(item);
+          productToStock.push(item);
         });
-        console.log(arrayEmpty);
-        setProducts(arrayEmpty);
+        setProducts(productToStock);
       }
     });
     return () => unsubscribe();
@@ -77,7 +77,7 @@ const ProductProvider = ({ children }: ProductProviderType) => {
       await setDoc(doc(db, user.uid, String(id)), {
         id,
         quantity: 1,
-      }).then(() => getData());
+      });
     } else {
       products.map(async (item) => {
         if (item.id === id) {
@@ -89,8 +89,9 @@ const ProductProvider = ({ children }: ProductProviderType) => {
     }
   }
 
-  function removeProduct(id: number): void {
-    setProducts(products?.filter((product) => product.id !== id));
+  async function removeProduct(id: number): Promise<any> {
+    // setProducts(products?.filter((product) => product.id !== id));
+    await deleteDoc(doc(db, user.uid, String(id)));
   }
 
   function decreaseProduct(id: number) {
@@ -109,7 +110,10 @@ const ProductProvider = ({ children }: ProductProviderType) => {
     });
   }
 
-  function changeQuantityProduct(id: number, value: number) {
+  async function changeQuantityProduct(id: number, value: number) {
+    await updateDoc(doc(db, user.uid, String(id)), {
+      quantity: value,
+    });
     setProducts((prev) => {
       return prev.map((item) => {
         if (item.id === id) {

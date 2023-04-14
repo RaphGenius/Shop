@@ -5,6 +5,8 @@ import BasketItem from "../components/BasketItem";
 import TotalProduct from "../components/TotalProduct";
 import { ProductType, StoreProduct } from "../types/DataType";
 import NoItemBasket from "../components/NoItemBasket";
+import { UserContext, UserContextType } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
@@ -17,6 +19,11 @@ const MyBasket = (props: Props) => {
   const { products, getQuantityProduct } = useContext(
     ProductContext
   ) as ProductContextType;
+  const { user } = useContext(UserContext) as UserContextType;
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) navigate("/");
+  }, [user]);
 
   if (products.length == 0) return <NoItemBasket />;
   return (
