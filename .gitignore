@@ -22,4 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-firebase
+
+
+/**/.env
+.env.example
+.env.local
+.env.staging

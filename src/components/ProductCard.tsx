@@ -30,9 +30,9 @@ const ProductCard = ({
           </h3>
         </div>
 
-        <div className="w-[100px] h-[160px]">
+        <div className="w-[100px] h-[160px]  ">
           <img
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain hover:scale-110 transition "
             src={image}
             alt={title}
           />

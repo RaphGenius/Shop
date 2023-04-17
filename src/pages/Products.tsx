@@ -39,10 +39,12 @@ const Products = () => {
 
   return (
     <section className=" p-4 lg:p-8">
-      <h2 className="capitalize text-center text-3xl">{category} </h2>
+      <h2 className="mt-8 text-center text-4xl text-green-700 font-special uppercase ">
+        {category}{" "}
+      </h2>
       {isLoading && <Loader />}
 
-      <div className="mt-4 flex items-center justify-center  w-full flex-wrap gap-4">
+      <div className="mt-8 flex items-center justify-center  w-full flex-wrap gap-4">
         {productsFromAPI &&
           productsFromAPI.map((product: ProductType) => (
             <ProductCard key={product.id} {...product} link={`${product.id}`} />

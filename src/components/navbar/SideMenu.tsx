@@ -1,12 +1,17 @@
-import React from "react";
 import Navlink from "./Navlink";
 import { GrClose } from "react-icons/gr";
 import Logo from "../Logo";
+import { logout } from "../../firebase/discFunction";
 type Props = {
   setIsSideMenuOpen: (value: boolean) => void;
 };
 
 const SideMenu = ({ setIsSideMenuOpen }: Props) => {
+  function disc() {
+    logout();
+    setIsSideMenuOpen(false);
+  }
+
   return (
     <div className="absolute top-0 left-0 h-screen right-0 bottom-0 inset-full z-50 bg-gradient-to-t from-gray-300 to-white ">
       <div className="p-8">
@@ -26,6 +31,9 @@ const SideMenu = ({ setIsSideMenuOpen }: Props) => {
           </button>{" "}
           <button onClick={() => setIsSideMenuOpen(false)}>
             <Navlink title="A propos" link="/about" />
+          </button>
+          <button onClick={() => disc()}>
+            <Navlink title="Deconnexion" link="/" />
           </button>
         </div>
       </div>

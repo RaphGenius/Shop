@@ -34,7 +34,10 @@ const categories: CategoryType[] = [
 const Shopping = (props: Props) => {
   return (
     <section className=" p-4 w-full mx-auto max-w-screen-xl">
-      <div className=" flex flex-wrap  w-auto gap-4">
+      <h2 className="mt-8 text-center text-4xl text-green-700 font-special ">
+        La boutique
+      </h2>
+      <div className=" flex flex-wrap mt-8  w-auto gap-4">
         {categories.map((category: CategoryType) => (
           <CategoryButton key={category.id} {...category} />
         ))}

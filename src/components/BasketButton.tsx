@@ -13,7 +13,10 @@ const BasketButton = (props: Props) => {
   return (
     <Link to={`/panier`}>
       {" "}
-      <button className="relative border-2 border-gray-600 p-4 rounded-full focus:ring focus:ring-green-800   hover:scale-105 will-change-transform   transition">
+      <button
+        aria-label="Allez à la page panier"
+        className="relative border-2 border-gray-600 p-4 rounded-full focus:ring focus:ring-green-800   hover:scale-105 will-change-transform   transition"
+      >
         <BsFillBasket3Fill />{" "}
         <div className="absolute w-8 h-8 flex items-center justify-center -right-2 bg-green-700 -bottom-2  rounded-full text-white ">
           {getQuantityProduct()}

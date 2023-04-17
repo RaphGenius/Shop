@@ -28,7 +28,7 @@ const Heart = ({ id }: Props) => {
 
   return (
     <button
-      aria-label="Coup de coeur"
+      aria-label="Ajouter aux Coup de coeur"
       className="hover:scale-125 transition"
       onClick={() => {
         handleToggleFavourite();

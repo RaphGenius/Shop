@@ -16,7 +16,6 @@ import {
 } from "./pages";
 function App() {
   const isBigScreen = useMediaQuery(`(min-width:768px)`);
-
   return (
     <UserProvider>
       <ProductProvider>
