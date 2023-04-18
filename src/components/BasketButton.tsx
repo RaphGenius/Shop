@@ -21,6 +21,7 @@ const BasketButton = (props: Props) => {
         <div className="absolute w-8 h-8 flex items-center justify-center -right-2 bg-green-700 -bottom-2  rounded-full text-white ">
           {getQuantityProduct()}
         </div>
+        <div></div>
       </button>
     </Link>
   );

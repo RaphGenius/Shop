@@ -13,7 +13,9 @@ import {
   Product,
   Products,
   Shopping,
+  Validation,
 } from "./pages";
+import MyProfil from "./pages/MyProfil";
 function App() {
   const isBigScreen = useMediaQuery(`(min-width:768px)`);
   return (
@@ -31,6 +33,8 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/panier" element={<MyBasket />} />
               <Route path="/favorite" element={<Favorite />} />
+              <Route path="/profil" element={<MyProfil />} />
+              <Route path="/validation/:id" element={<Validation />} />
             </Routes>
           </main>
           <Footer />

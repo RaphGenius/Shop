@@ -58,9 +58,8 @@ const ModalLog = ({ setModalIsOpen }: ModelProps) => {
                   <p className="text-center">Vous n'avez pas de compte ? </p>
                   <button
                     onClick={() => setIsLogin("signup")}
-                    className="font-medium text-indigo-600 hover:text-indigo-500 text-center"
+                    className="font-medium text-green-600 hover:text-green-900 text-center"
                   >
-                    {" "}
                     Inscrivez vous!
                   </button>
                 </div>

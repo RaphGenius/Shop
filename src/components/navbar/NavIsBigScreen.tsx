@@ -6,6 +6,7 @@ import DiscButton from "../DiscButton";
 
 import BasketButton from "../BasketButton";
 import FavoriteButton from "./FavoriteButton";
+import { Link } from "react-router-dom";
 
 type Props = {
   setModalIsOpen: (value: boolean) => void;
@@ -29,12 +30,15 @@ const NavIsBigScreen = ({ setModalIsOpen, user }: Props) => {
         <FavoriteButton />
         {user ? (
           <>
-            <button
-              aria-label="Allez à la page Profil"
-              className="relative border-2 border-gray-600 hover:scale-105 will-change-transform   transition p-4 rounded-full focus:ring focus:ring-green-800 "
-            >
-              <BsFillPersonFill />
-            </button>
+            <Link to={"/profil"}>
+              <button
+                aria-label="Allez à la page Profil"
+                className="relative border-2 border-gray-600 hover:scale-105 will-change-transform   transition p-4 rounded-full focus:ring focus:ring-green-800 "
+              >
+                <BsFillPersonFill />
+              </button>
+            </Link>
+
             <DiscButton />
             <BasketButton />
           </>

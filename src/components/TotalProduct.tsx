@@ -30,7 +30,7 @@ const TotalProduct = () => {
 
   return (
     <article
-      className={` duration-300 ${
+      className={` duration-200  ${
         isLoading ? "blur " : ""
       } h-full flex flex-col justify-evenly`}
     >

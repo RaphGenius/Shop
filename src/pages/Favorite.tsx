@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ProductType } from "../types/DataType";
 import ProductCard from "../components/ProductCard";
 import { CiSquareRemove } from "react-icons/ci";
+import NoItemBasket from "../components/NoItemBasket";
 type Props = {};
 
 const Favorite = (props: Props) => {
@@ -34,14 +35,16 @@ const Favorite = (props: Props) => {
     setProductFavorite((prev) => prev.filter((item) => item.id !== id));
   };
 
-  if (productFavorite.length < 1) return <p>pas de produit</p>;
+  if (productFavorite.length < 1) return <NoItemBasket />;
 
   console.log(productFavorite);
 
   return (
     <section className=" p-4 lg:p-8">
-      <h2 className="capitalize text-center text-3xl">Favorites </h2>
-      <div className="mt-4 flex items-center justify-center  w-full flex-wrap gap-4">
+      <h2 className="capitalize text-center text-4xl mt-8 font-special text-green-800 ">
+        Favorites{" "}
+      </h2>
+      <div className="mt-8 flex items-center justify-center  w-full flex-wrap gap-4">
         {productFavorite &&
           productFavorite.map((product: ProductType) => (
             <div key={product.id}>

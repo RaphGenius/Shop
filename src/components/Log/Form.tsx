@@ -56,25 +56,25 @@ const Form = ({ isLogin }: FormProps) => {
   return (
     <form onSubmit={(e) => handleSignIn(e)} className="space-y-5">
       <div>
-        <label className="font-medium">Email</label>
+        <label className="font-medium text-black">Email</label>
         <input
           ref={mail}
           type="email"
           required
-          className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+          className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-green-800 shadow-sm rounded-lg"
         />
       </div>
       <div>
-        <label className="font-medium">Mot de passe</label>
+        <label className="font-medium text-black">Mot de passe</label>
         <input
           type="password"
           required
           ref={password}
-          className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+          className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-green-800 shadow-sm rounded-lg"
         />
       </div>
 
-      <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
+      <button className="w-full px-4 py-2 text-white font-medium bg-green-700 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
         {isLogin === "signup" ? "S'inscrire" : "Se connecter"}
       </button>
     </form>

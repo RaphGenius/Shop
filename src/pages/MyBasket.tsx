@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ProductContext, ProductContextType } from "../context/ProductContext";
-
 import BasketItem from "../components/BasketItem";
 import TotalProduct from "../components/TotalProduct";
-import { ProductType, StoreProduct } from "../types/DataType";
+
 import NoItemBasket from "../components/NoItemBasket";
 import { UserContext, UserContextType } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import FormBasket from "../components/FormBasket";
 
 type Props = {};
 
@@ -25,6 +25,7 @@ const MyBasket = (props: Props) => {
     if (!user) navigate("/");
   }, [user]);
 
+  console.log(user);
   if (products.length == 0) return <NoItemBasket />;
   return (
     <section className=" p-4 lg:p-8 ">
@@ -44,11 +45,12 @@ const MyBasket = (props: Props) => {
           </article>
 
           {/* Mon total */}
-          <div className=" px-4 py-8 bg-green-400 w-full lg:w-1/3 sticky lg:top-0 top-[100px] mt-4 lg:mt-0  lg:h-[200px] ">
+          <div className=" px-4 py-8  bg-green-800 text-white w-full lg:w-1/3 sticky lg:top-0 top-[100px] mt-4 lg:mt-0  lg:h-[200px] ">
             <TotalProduct />
           </div>
         </div>
       </div>
+      {user && <FormBasket user={user} />}
     </section>
   );
 };

@@ -26,6 +26,7 @@ export type ProductContextType = {
   decreaseProduct: (value: number) => void;
   getQuantityProduct: () => number;
   changeQuantityProduct: (id: number, value: number) => void;
+  removeAllProduct: (value: null) => void;
 };
 
 export const ProductContext = createContext<ProductContextType | null>(null);
@@ -117,16 +118,25 @@ const ProductProvider = ({ children }: ProductProviderType) => {
     setProducts((prev) => {
       return prev.map((item) => {
         if (item.id === id) {
-          console.log("produit quantité modifié");
           return { ...item, quantity: value };
         } else return item;
       });
     });
   }
+
+  async function removeAllProduct() {
+    for (const item of products) {
+      const { id } = item;
+
+      await deleteDoc(doc(db, user.uid, String(id)));
+    }
+  }
+
   return (
     <ProductContext.Provider
       value={{
         products,
+        removeAllProduct,
         removeProduct,
         addProduct,
         decreaseProduct,
