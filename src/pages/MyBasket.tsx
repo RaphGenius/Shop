@@ -25,7 +25,6 @@ const MyBasket = (props: Props) => {
     if (!user) navigate("/");
   }, [user]);
 
-  console.log(user);
   if (products.length == 0) return <NoItemBasket />;
   return (
     <section className=" p-4 lg:p-8 ">

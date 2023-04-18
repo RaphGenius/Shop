@@ -29,9 +29,9 @@ const SideMenu = ({ setIsSideMenuOpen }: Props) => {
           <button onClick={() => setIsSideMenuOpen(false)}>
             <Navlink title="La boutique" link="/shop" />
           </button>{" "}
-          <button onClick={() => setIsSideMenuOpen(false)}>
+          {/* <button onClick={() => setIsSideMenuOpen(false)}>
             <Navlink title="A propos" link="/about" />
-          </button>
+          </button> */}
           <button onClick={() => disc()}>
             <Navlink title="Deconnexion" link="/" />
           </button>

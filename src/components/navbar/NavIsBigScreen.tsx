@@ -22,7 +22,7 @@ const NavIsBigScreen = ({ setModalIsOpen, user }: Props) => {
         <div className="flex gap-6  ">
           <Navlink title="Accueil" link="/" />
           <Navlink title="La boutique" link="/shop" />
-          <Navlink title="A propos" link="/about" />
+          {/* <Navlink title="A propos" link="/about" /> */}
         </div>
       </div>
       {/* BTN LOG OU PANIER */}
@@ -30,15 +30,6 @@ const NavIsBigScreen = ({ setModalIsOpen, user }: Props) => {
         <FavoriteButton />
         {user ? (
           <>
-            <Link to={"/profil"}>
-              <button
-                aria-label="Allez à la page Profil"
-                className="relative border-2 border-gray-600 hover:scale-105 will-change-transform   transition p-4 rounded-full focus:ring focus:ring-green-800 "
-              >
-                <BsFillPersonFill />
-              </button>
-            </Link>
-
             <DiscButton />
             <BasketButton />
           </>

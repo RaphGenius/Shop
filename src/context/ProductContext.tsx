@@ -46,7 +46,6 @@ const ProductProvider = ({ children }: ProductProviderType) => {
       // console.log("Document data:", docSnap.data());
       const { products } = docSnap.data();
       setProducts(products);
-      console.log(products);
     } else {
       console.log("No such document!");
     }

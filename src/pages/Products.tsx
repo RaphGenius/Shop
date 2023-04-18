@@ -8,7 +8,6 @@ import { ProductType } from "../types/DataType";
 const Products = () => {
   let { category } = useParams();
 
-  console.log(category);
   const [productsFromAPI, setProductsFromApi] = useState<ProductType[] | null>(
     []
   );

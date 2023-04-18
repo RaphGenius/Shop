@@ -11,7 +11,6 @@ const ModalLog = ({ setModalIsOpen }: ModelProps) => {
     "login"
   );
   const { user } = useContext(UserContext) as UserContextType;
-  console.log(isLogin);
 
   useEffect(() => {
     if (user) {

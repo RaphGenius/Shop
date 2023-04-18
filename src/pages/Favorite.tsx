@@ -37,8 +37,6 @@ const Favorite = (props: Props) => {
 
   if (productFavorite.length < 1) return <NoItemBasket />;
 
-  console.log(productFavorite);
-
   return (
     <section className=" p-4 lg:p-8">
       <h2 className="capitalize text-center text-4xl mt-8 font-special text-green-800 ">
