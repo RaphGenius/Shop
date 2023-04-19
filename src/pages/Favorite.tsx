@@ -3,6 +3,8 @@ import { ProductType } from "../types/DataType";
 import ProductCard from "../components/ProductCard";
 import { CiSquareRemove } from "react-icons/ci";
 import NoItemBasket from "../components/NoItemBasket";
+import { motion } from "framer-motion";
+import { variantsPage } from "../FramerMotion/framerVariants";
 type Props = {};
 
 const Favorite = (props: Props) => {
@@ -38,9 +40,15 @@ const Favorite = (props: Props) => {
   if (productFavorite.length < 1) return <NoItemBasket />;
 
   return (
-    <section className=" p-4 lg:p-8">
-      <h2 className="capitalize text-center text-4xl mt-8 font-special text-green-800 ">
-        Favorites{" "}
+    <motion.section
+      variants={variantsPage}
+      initial={"initial"}
+      animate={"animate"}
+      exit={"exit"}
+      className=" p-4 lg:p-8 "
+    >
+      <h2 className="first-letter:uppercase text-center text-4xl mt-8 font-special text-green-800 ">
+        Mes coups de coeur
       </h2>
       <div className="mt-8 flex items-center justify-center  w-full flex-wrap gap-4">
         {productFavorite &&
@@ -61,7 +69,7 @@ const Favorite = (props: Props) => {
           ))}
       </div>
       <div className="mt-4 flex items-center justify-center  w-full flex-wrap gap-4"></div>
-    </section>
+    </motion.section>
   );
 };
 

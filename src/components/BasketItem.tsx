@@ -5,6 +5,7 @@ import { ProductContext, ProductContextType } from "../context/ProductContext";
 import Loader from "./Loader";
 import { BsFillTrashFill } from "react-icons/bs";
 import { FormatPrice } from "../utils/FormatPrice";
+import { motion } from "framer-motion";
 const BasketItem = ({ id, quantity }: StoreProduct) => {
   const [myProduct, setMyProduct] = useState<ProductType>();
   const { changeQuantityProduct, removeProduct } = useContext(
@@ -22,7 +23,13 @@ const BasketItem = ({ id, quantity }: StoreProduct) => {
 
   if (!myProduct) return <Loader />;
   return (
-    <div className=" lg:h-[200px]   even:bg-gray-100 odd:bg-slate-200 first:mt-0 mt-4 flex lg:flex-nowrap flex-wrap items-center lg:text-lg text-md  ">
+    <motion.div
+      key={myProduct.id}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.2 } }}
+      className=" lg:h-[200px]   even:bg-gray-100 odd:bg-slate-200 first:mt-0 mt-4 flex lg:flex-nowrap flex-wrap items-center lg:text-lg text-md  "
+    >
       {/* IMAGE */}
       <div className=" p-4 w-1/4   lg:w-1/6 lg:h-[150px]  flex  items-center justify-center  ">
         <Link
@@ -82,12 +89,8 @@ const BasketItem = ({ id, quantity }: StoreProduct) => {
         <p className=" mt-4 lg:text-lg text-center  lg:text-start ">
           Prix unitaire : {FormatPrice(myProduct?.price)}€{" "}
         </p>
-        <p className="lg:text-lg text-center  lg:text-start ">
-          Total article:{" "}
-          {FormatPrice(myProduct?.price && (myProduct?.price * quantity) | 0)}€{" "}
-        </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

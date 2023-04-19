@@ -19,7 +19,7 @@ function Validation({}: Props) {
       <div className="mt-8 text-center  w-full flex-wrap gap-4">
         <p> Votre commande n°{id?.slice(0, 10)} a bien été validé</p>
         <p>
-          Celle ci devrait arrivé le {new Date().getDate() + 2}/0
+          Celle ci devrait arriver le {new Date().getDate() + 2}/0
           {new Date().getMonth()}/2023
         </p>
       </div>

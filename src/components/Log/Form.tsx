@@ -104,7 +104,7 @@ const Form = ({ isLogin }: FormProps) => {
         />
       </div>
       <div className="pb-4">
-        <button className="w-full px-4 py-2 text-white font-medium bg-green-700 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
+        <button className="w-full px-4 py-2 text-white font-medium bg-green-700 hover:bg-green-500 active:bg-green-600 rounded-lg duration-150">
           {isLogin === "signup" ? "S'inscrire" : "Se connecter"}
         </button>
       </div>

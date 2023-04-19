@@ -10,7 +10,8 @@ import { toast } from "react-toastify";
 import ModelProduct from "../components/ModelProduct";
 import BackNagivate from "../components/BackNagivate";
 import { UserContext, UserContextType } from "../context/UserContext";
-
+import { motion } from "framer-motion";
+import { variantsPage } from "../FramerMotion/framerVariants";
 type Props = {};
 
 const Product = (props: Props) => {
@@ -46,7 +47,13 @@ const Product = (props: Props) => {
   if (!productData || !id) return <Loader />;
 
   return (
-    <article className=" p-4  lg:p-8  overflow-x--hidden">
+    <motion.article
+      variants={variantsPage}
+      initial={"initial"}
+      animate={"animate"}
+      exit={"exit"}
+      className=" p-4  lg:p-8  overflow-x--hidden"
+    >
       {isModalProductOpen && (
         <ModelProduct
           img={productData.image}
@@ -54,7 +61,13 @@ const Product = (props: Props) => {
           setIsModalProductOpen={setIsModalProductOpen}
         />
       )}
-      <div className=" flex-col items-center lg:items-stretch flex md:flex-row gap-8 mt-4 ">
+      <motion.div
+        variants={variantsPage}
+        initial={"initial"}
+        animate={"animate"}
+        exit={"exit"}
+        className=" flex-col items-center lg:items-stretch flex md:flex-row gap-8 mt-4 "
+      >
         {/* image */}
         <div className="  w-2/5 lg:w-1/2 lg:max-h-[300px]  lg:sticky top-[150px]  hover:scale-110 cursor-pointer transition ">
           <img
@@ -74,7 +87,7 @@ const Product = (props: Props) => {
             Category : {productData.category}
           </span>
           <span className="text-gray-700 no-underline text-lg ">
-            Note :
+            Note :{" "}
             <span className={`${Rating(productData.rating.rate)}`}>
               {productData.rating.rate}
             </span>
@@ -84,7 +97,7 @@ const Product = (props: Props) => {
           <div>
             <p>
               <span className="text-gray-800 no-underline text-lg font-bold">
-                Prix :
+                Prix :{" "}
               </span>
               {FormatPrice(productData.price)} €
             </p>
@@ -92,7 +105,7 @@ const Product = (props: Props) => {
           {/* DESCRIPTION */}
           <p>
             <span className="text-gray-900 no-underline text-lg font-bold">
-              Description :
+              Description :{" "}
             </span>
             {productData.description}
           </p>
@@ -115,8 +128,8 @@ const Product = (props: Props) => {
             <BackNagivate> Retourner à la liste de produit </BackNagivate>
           </span>
         </div>
-      </div>
-    </article>
+      </motion.div>
+    </motion.article>
   );
 };
 

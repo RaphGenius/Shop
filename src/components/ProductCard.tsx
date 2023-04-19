@@ -2,17 +2,8 @@ import { Link } from "react-router-dom";
 
 import { ProductType } from "../types/DataType";
 import { FormatPrice } from "../utils/FormatPrice";
-
-const ProductCard = ({
-  category,
-  description,
-  id,
-  image,
-  rating,
-  title,
-  price,
-  link,
-}: ProductType) => {
+import { motion } from "framer-motion";
+const ProductCard = ({ image, title, price, link }: ProductType) => {
   function little(str: string) {
     if (str.length > 50) {
       return str.slice(0, 40) + "...";

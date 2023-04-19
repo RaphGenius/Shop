@@ -4,7 +4,7 @@ type Props = {};
 
 const Logo = (props: Props) => {
   return (
-    <div className="mr-8 w-[50px] relative ">
+    <div className="mr-8 w-[50px] relative  " role="logo">
       <Link to={`/`}>
         <h1>
           <img
